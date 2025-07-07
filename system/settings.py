@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-@6(mhc5g=+^f0v&$v@jnkiqc0%v-z73g%6t+&m=&05s&+x=#6m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://localhost:3000/', 'starbound-backend-rxgm.onrender.com']
+ALLOWED_HOSTS = ['http://localhost:3000', 'starbound-backend-rxgm.onrender.com']
 
 
 # Application definition
@@ -76,7 +76,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000/",
+    "http://localhost:3000",
     "https://starbound-backend-rxgm.onrender.com",
 ]
 
