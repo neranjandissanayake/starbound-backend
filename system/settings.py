@@ -127,11 +127,11 @@ WSGI_APPLICATION = 'system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('railway'),
-        'USER': os.getenv('postgres'),
-        'PASSWORD': os.getenv('HEvrIdxioGRNfQnrFqQYzhEYWJLRjZOP'),
-        'HOST': os.getenv('postgres.railway.internal'),
-        'PORT': os.getenv('PGPORT', '5432'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 
 
