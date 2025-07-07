@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-@6(mhc5g=+^f0v&$v@jnkiqc0%v-z73g%6t+&m=&05s&+x=#6m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['starbound-backend-rxgm.onrender.com']
 
 
 # Application definition
