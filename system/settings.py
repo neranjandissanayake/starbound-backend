@@ -72,7 +72,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "https://starbound-backend-rxgm.onrender.com",
 ]
 
 REST_FRAMEWORK = {
@@ -126,19 +126,12 @@ WSGI_APPLICATION = 'system.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'react2',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'ssl': {
-                'ca': 'C:/ssl/server.crt',
-                'cert': 'C:/ssl/server.crt',
-                'key': 'C:/ssl/server.key',
-            }
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'HEvrIdxioGRNfQnrFqQYzhEYWJLRjZOP',
+        'HOST': 'postgres.railway.internal',
+        'PORT': '5432',
     }
 }
 
