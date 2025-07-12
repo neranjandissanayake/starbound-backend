@@ -21,6 +21,7 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no root@159.198.66.181 << 'EOF'
+            set -e
             cd /var/www/starbound/starbound-backend
             git pull origin main
             source venv/bin/activate
