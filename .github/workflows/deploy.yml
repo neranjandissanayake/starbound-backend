@@ -23,23 +23,29 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@159.198.66.181 << 'EOF'
             set -e
             sudo apt update
-            sudo apt install -y python3-venv
+            sudo apt install -y python3-venv python3-pip git
 
             cd /var/www/starbound
 
+            # Clone repo if not exists
             if [ ! -d "starbound-backend" ]; then
               git clone https://github.com/neranjandissanayake/starbound-backend.git
             fi
 
             cd starbound-backend
+
+            # Reset local changes (optional but safer)
+            git reset --hard
+            git clean -fd
             git pull origin main
 
+            # Setup virtual environment if missing
             if [ ! -d "venv" ]; then
               python3 -m venv venv
             fi
 
             source venv/bin/activate
-            pip install --upgrade pip
+            pip install --upgrade pip setuptools wheel
             pip install -r requirements.txt
 
             python manage.py migrate
