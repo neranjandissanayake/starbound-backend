@@ -1,9 +1,9 @@
-name: Deploy Django to VPS
+name: Deploy Django Backend to VPS
 
 on:
   push:
     branches:
-      - main  # change if you use another branch
+      - main
 
 jobs:
   deploy:
@@ -22,11 +22,29 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@159.198.66.181 << 'EOF'
             set -e
-            cd /var/www/starbound/starbound-backend
+            cd /var/www/starbound
+
+            # Clone the repo only if it doesn't exist
+            if [ ! -d "starbound-backend/.git" ]; then
+              rm -rf starbound-backend
+              git clone https://github.com/neranjandissanayake/starbound-backend.git
+            fi
+
+            cd starbound-backend
             git pull origin main
+
+            # Activate virtual environment (assumes it's already created)
+            if [ ! -d "venv" ]; then
+              python3 -m venv venv
+            fi
             source venv/bin/activate
+
+            pip install --upgrade pip
             pip install -r requirements.txt
+
             python manage.py migrate
             python manage.py collectstatic --noinput
-            sudo systemctl restart gunicorn
+
+            # Restart Gunicorn (update if you use another WSGI server or service name)
+            systemctl restart gunicorn
           EOF
