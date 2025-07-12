@@ -13,13 +13,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from datetime import timedelta
 
 import os
-import dotenv
 import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 
-dotenv.read_dotenv(os.path.join(BASE_DIR, '.env'))
+import dotenv
+dotenv.load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
 
