@@ -20,9 +20,8 @@ jobs:
 
       - name: Deploy to VPS
         run: |
-          ssh -o StrictHostKeyChecking=no root@159.198.66.181 << 'EOF'
-            set -e  # Exit on error
-
+          ssh -o StrictHostKeyChecking=no root@159.198.66.181 << EOF
+            set -e
             echo "Updating packages and installing dependencies..."
             sudo apt update
             sudo apt install -y python3-venv python3-pip git
@@ -41,13 +40,11 @@ jobs:
             git clean -fd
             git pull origin main
 
-            # Create virtual environment if missing
             if [ ! -d "venv" ]; then
               echo "Creating virtual environment..."
               python3 -m venv venv
             fi
 
-            # Debug: list venv directory contents to confirm
             ls -l venv
 
             echo "Activating virtual environment and installing dependencies..."
@@ -55,6 +52,13 @@ jobs:
 
             pip install --upgrade pip setuptools wheel
             pip install -r requirements.txt
+
+            echo "Exporting DB credentials..."
+            export DB_NAME=${{ secrets.DB_NAME }}
+            export DB_USER=${{ secrets.DB_USER }}
+            export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            export DB_HOST=${{ secrets.DB_HOST }}
+            export DB_PORT=${{ secrets.DB_PORT }}
 
             echo "Running migrations and collecting static files..."
             python manage.py migrate
