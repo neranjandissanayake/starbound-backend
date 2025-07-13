@@ -37,7 +37,7 @@ SECRET_KEY = 'django-insecure-@6(mhc5g=+^f0v&$v@jnkiqc0%v-z73g%6t+&m=&05s&+x=#6m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://localhost:3000', 'https://www.logivis.com', 'https://logivis.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.logivis.com', 'logivis.com']
 
 
 
